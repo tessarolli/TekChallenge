@@ -1,0 +1,125 @@
+version: '3.8'
+
+services:
+
+  envoy-api-gateway:
+    ports:
+      - "5000:8000"      
+      - "5001:8001"
+  envoy-api-gateway-dapr:
+    command: ["./daprd",
+      "-app-id", "envoy-api-gateway",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  auth-service-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+    ports:
+      - "5010:80"
+      - "50011:50001" # Dapr instances communicate over gRPC so we need to expose the gRPC port
+      - "3510:3500" # Dapr sidecar port
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  auth-service-api-dapr:
+    command: [
+      "./daprd",
+      "-app-id", "auth-service-api",
+      "-app-port", "80",
+      "-placement-host-address", "dapr-placement:50000",
+      "-components-path", "/components",
+      "-config", "/configuration/config.yaml",
+      "-log-level", "debug"
+    ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+    depends_on:
+      - dapr-placement
+      - redis
+
+  discount-service-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+    ports:
+      - "5020:80"
+      - "50021:50001" # Dapr instances communicate over gRPC so we need to expose the gRPC port
+      - "3520:3500" # Dapr sidecar port
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  discount-service-api-dapr:
+    command: [
+      "./daprd",
+      "-app-id", "discount-service-api",
+      "-app-port", "80",
+      "-placement-host-address", "dapr-placement:50000",
+      "-components-path", "/components",
+      "-config", "/configuration/config.yaml",
+      "-log-level", "debug"
+    ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+    depends_on:
+      - dapr-placement
+      - redis
+
+  product-service-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+    ports:
+      - "5030:80"
+      - "50031:50001" # Dapr instances communicate over gRPC so we need to expose the gRPC port
+      - "3530:3500" # Dapr sidecar port
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  product-service-api-dapr:
+    command: [
+      "./daprd",
+      "-app-id", "product-service-api",
+      "-app-port", "80",
+      "-placement-host-address", "dapr-placement:50000",
+      "-components-path", "/components",
+      "-config", "/configuration/config.yaml",
+      "-log-level", "debug"
+    ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+    depends_on:
+      - dapr-placement
+      - redis
+
+  dapr-placement:
+    command: [
+      "./placement",
+      "-port", "50000",
+      "-log-level", "debug"
+    ]
+    ports:
+      - "50000:50000"
+
+  redis:
+    ports:
+      - "6380:6379"
+
+  zipkin: 
+    ports:
+      - "9411:9411"
+
+  seq:
+    environment:
+      ACCEPT_EULA: "Y"
+    ports:
+      - "5341:80"

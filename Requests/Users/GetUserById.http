@@ -1,0 +1,5 @@
+@host=http://localhost:5000
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNSIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJqdGkiOiIyNSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzEwNjI4MTUxLCJpc3MiOiJUZWtDaGFsbGVuZ2UiLCJhdWQiOiJUZWtDaGFsbGVuZ2UifQ.oUlNz1etgfgf_gMt0wZ2Jba4ojyOzMUCla3VUkRCRv8
+
+GET {{host}}/users/51
+Authorization: Bearer {{token}}

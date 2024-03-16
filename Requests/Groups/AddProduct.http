@@ -1,0 +1,11 @@
+@host=https://localhost:5001
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMyIsImZhbWlseV9uYW1lIjoiVXNlciIsImdpdmVuX25hbWUiOiJVc2VyIiwianRpIjoiMjMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNjgzMTYwMTIyLCJpc3MiOiJEb2N1bWVudGFsbHkiLCJhdWQiOiJEb2N1bWVudGFsbHkifQ.mxofdFj3GWXS4aPKjixnY7cseSgT_gfncA2cgxNDroA
+
+POST {{host}}/Groups
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "Name": "Admin's Group",
+    "OwnerId": 25
+}

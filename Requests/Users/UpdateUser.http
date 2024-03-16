@@ -1,0 +1,16 @@
+@host=http://localhost:5000
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNSIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJqdGkiOiIyNSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzEwNjI4MTUxLCJpc3MiOiJUZWtDaGFsbGVuZ2UiLCJhdWQiOiJUZWtDaGFsbGVuZ2UifQ.oUlNz1etgfgf_gMt0wZ2Jba4ojyOzMUCla3VUkRCRv8
+
+PUT {{host}}/users/
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "id": 51,
+  "firstName": "Admin",
+  "lastName": "Admin",
+  "email": "admin@tekchallenge.com",
+  "password": "AQAAAAIAAYagAAAAEJQ/qlza7D3xfFVBfqTTwUvwxAMEiyjAmXMZpmhS/R3owD8WP8Kfg7+OkVsYs/hZKQ==",
+  "role": 2,
+  "createdAtUtc": "1924-03-16T10:57:26.8083557Z"
+}

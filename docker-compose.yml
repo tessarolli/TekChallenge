@@ -1,0 +1,111 @@
+version: '3.8'
+
+services:
+
+  # Envoy API Gateway
+  envoy-api-gateway:
+    image: ${DOCKER_REGISTRY-tek-challenge}/envoy-api-gateway:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Gateway/Dockerfile
+    networks:
+      - tek-challenge-network
+  envoy-api-gateway-dapr:
+    image: "daprio/daprd:latest"
+    network_mode: "service:envoy-api-gateway"
+    depends_on:
+      - envoy-api-gateway
+  
+  # Auth Service API
+  auth-service-api:
+    image: ${DOCKER_REGISTRY-tek-challenge}/auth-service-api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/AuthService/AuthService.API/Dockerfile
+    depends_on:
+      - redis
+    networks:
+      - tek-challenge-network
+  auth-service-api-dapr:
+    image: "daprio/daprd:latest"
+    network_mode: "service:auth-service-api"
+    depends_on:
+      - auth-service-api
+      - dapr-placement
+
+  # Discount Service API
+  discount-service-api:
+    image: ${DOCKER_REGISTRY-tek-challenge}/discount-service-api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/DiscountService/DiscountService.API/Dockerfile
+    depends_on:
+      - redis 
+    networks:
+      - tek-challenge-network 
+  discount-service-api-dapr:
+    image: "daprio/daprd:latest"
+    network_mode: "service:discount-service-api"
+    depends_on:
+      - discount-service-api
+      - dapr-placement
+
+  # Product Service API
+  product-service-api:
+    image: ${DOCKER_REGISTRY-tek-challenge}/product-service-api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/ProductService/ProductService.API/Dockerfile
+    depends_on:
+      - redis 
+    networks:
+      - tek-challenge-network 
+  product-service-api-dapr:
+    image: "daprio/daprd:latest"
+    network_mode: "service:product-service-api"
+    depends_on:
+      - product-service-api
+      - dapr-placement
+
+  dapr-placement:
+    image: "daprio/dapr"
+    networks:
+      - tek-challenge-network
+    depends_on: 
+      - redis
+
+  redis:
+    image: redis:alpine
+    networks:
+      - tek-challenge-network
+
+  zipkin:
+    image: openzipkin/zipkin-slim:latest
+    networks:
+      - tek-challenge-network
+
+  seq:
+    image: datalust/seq:latest
+    networks:
+      - tek-challenge-network
+
+  dapr-dashboard:
+    image: "daprio/dashboard:latest"
+    command: [ "--docker-compose=true", 
+      "--components-path=/home/nonroot/components", 
+      "--config-path=/home/nonroot/configuration", 
+      "--docker-compose-path=/home/nonroot/docker-compose.yml" ]
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./dapr/components/:/home/nonroot/components"
+      - "./dapr/configuration/:/home/nonroot/configuration"
+      - ./docker-compose.yml:/home/nonroot/docker-compose.yml
+    networks:
+      - tek-challenge-network
+    depends_on:
+      - redis
+
+networks:
+  tek-challenge-network:
+    driver: bridge

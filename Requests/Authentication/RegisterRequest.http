@@ -1,0 +1,11 @@
+@host=http://localhost:5000
+
+POST {{host}}/authentication/register
+Content-Type: application/json
+
+{
+    "FirstName": "Admin",
+    "LastName": "Admin",
+    "email": "admin@tekchallenge.com",
+    "password": "admin"
+}
