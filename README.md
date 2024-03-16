@@ -1,44 +1,79 @@
-# Tek Project
+# Tek Challenge Project
 
-Tek is a monolithic application built for scaling using .NET Core and PostgreSQL as the primary data storage. 
+Tek Challenge is a Containerized Distributed System built for scaling using .NET Core and PostgreSQL as the primary data storage. 
 It follows Clean Architecture, Domain-Driven Design (DDD) and CQRS (Commands and Queries Responsibility Seggregation) principles to ensure the code is organized, maintainable, and scalable.
-Its loose coupling design makes it easy to refactor into a microservices architecture with minimal changes. 
-The application provides an API for users to upload and download documents with metadata such as posted date, name, description, and category, as well as manage user groups and access permissions.
+The application provides an API for users to Products in a Catalog, along with Authentication and Authorization.
 
-## Technologies Used
+## Tech stack
 - .NET Core: A free, open-source, cross-platform framework for building modern, cloud-based, internet-connected applications.
-- PostgreSQL: A powerful, open-source object-relational database system.
 - Dapper: A simple, lightweight ORM (Object-Relational Mapping) that makes it easy to work with relational databases in .NET applications.
-- Azure Blob Cloud Storage: A cloud-based object storage solution provided by Microsoft Azure, which allows you to store and access unstructured data such as text, images, and videos.
+- Dapr: Distributed Application Runtime, is an open-source, portable runtime that simplifies building distributed applications with a focus on interoperability and abstraction of common infrastructure concerns.
 - MediatR: A library that allows for the easy implementation of the Mediator pattern by providing a simple interface for sending and handling requests between objects, typically in a request-response fashion. This can be especially useful in large applications where there are many classes and dependencies, as it helps to simplify communication and reduce coupling between different parts of the codebase.
 - Mapster: A fast, convention-based object-object mapper that allows you to easily convert objects of one type to another, with support for nested mapping and customization.
+- PostgreSQL: A powerful, open-source object-relational database system.
 
-## Features
+## Available Features
 - User authentication
 - User management (CRUD)
-- Group management (CRUD)
-- Document upload and download
-- Group and user access permissions for documents
-- Role-based access control (regular, manager, and admin)
+- Product Catalog Management (CRUD)
+- Role-based access control (user, manager, and admin)
 - REST API for all actions
 
-## Architecture
-The application follows Clean Architecture and Domain-Driven Design (DDD) principles to separate the application into distinct layers that can be independently tested and developed. 
-The architecture consists of the following layers:
+## System Architecture
+The system architecture of Tek Challenge can be visualized as a set of microservices deployed within containers orchestrated by Kubernetes. 
+Each microservice follows a modular architecture, leveraging the principles of Clean Architecture, Domain-Driven Design (DDD), and Command Query Responsibility Segregation (CQRS).
 
-### Presentation Layer
-This layer consists of the REST API, which is responsible for handling requests and returning responses to clients.
+### Components:
 
-### Application Layer
-This layer contains the application logic, which is responsible for coordinating actions between the Presentation and Domain layers. 
-It also implements the role-based access control (RBAC) and enforces user permissions, and defines the interfaces for the application services and repositories, which are implemented in the Infrastructure layer.
+1. **Authentication Service**: Responsible for managing user authentication and authorization. Utilizes JWT (JSON Web Tokens) for secure authentication.
 
-### Domain Layer
-This layer contains the business logic and domain objects, including entities, aggregates, and value objects. 
+2. **Authorization Service**: Implements role-based access control (RBAC), distinguishing between user roles such as regular users, managers, and administrators. Controls access to different parts of the system based on user roles and permissions.
 
-### Infrastructure Layer
-This layer provides concrete implementations of the application services and repositories defined in the Domain layer. 
-It is also responsible for handling data access and database communication using Dapper and PostgreSQL.
+3. **User Management Service**: Handles CRUD operations related to user entities, including creation, retrieval, updating, and deletion of user accounts.
+
+4. **Product Catalog Service**: Manages the CRUD operations for products in the catalog. This includes functionalities for adding, updating, deleting, and retrieving product information.
+
+5. **API Gateway**: Serves as the entry point for external clients to interact with the system. Routes incoming requests to the appropriate microservices based on the requested endpoint.
+
+### Infrastructure:
+
+- **Container Orchestration (Kubernetes)**: Manages the deployment, scaling, and monitoring of containerized microservices across a cluster of machines. Ensures high availability and fault tolerance.
+
+- **Database (PostgreSQL)**: Provides persistent storage for application data, including user accounts, product information, and access control policies.
+
+### Communication:
+
+- **REST API**: Exposes a set of RESTful endpoints for external clients to interact with the system. Utilizes HTTP methods such as GET, POST, PUT, and DELETE for performing CRUD operations.
+
+- **Dapr Service Invocation**: Facilitates communication between microservices using Dapr Service Invocation.
+
+### Deployment:
+
+- **Docker Containers**: Each microservice is packaged as a lightweight, self-contained Docker container, ensuring consistency and portability across different environments.
+
+- **Continuous Integration/Continuous Deployment (CI/CD)**: Implements automated pipelines for building, testing, and deploying microservices. Ensures rapid and reliable delivery of software updates.
+
+### Scalability and Resilience:
+
+- **Horizontal Scaling**: Utilizes Kubernetes to dynamically scale individual microservices based on resource utilization and incoming traffic.
+
+- **Fault Tolerance**: Implements redundancy and failover mechanisms to ensure system resilience in the face of hardware failures or network issues.
+
+### Monitoring and Logging:
+
+- **Logging**: Generates logs for capturing application events, errors, and diagnostic information. Utilizes centralized logging solutions for aggregation and analysis.
+
+- **Metrics**: Collects performance metrics such as response times, throughput, and error rates to monitor the health and performance of the system. Utilizes tools like Prometheus and Grafana for visualization and analysis.
+
+### Security:
+
+- **JWT Tokens**: Implements secure authentication using JSON Web Tokens (JWT), ensuring that only authenticated users can access protected resources.
+
+- **Encryption**: Utilizes encryption mechanisms to secure sensitive data such as user passwords and authentication tokens.
+
+### Conclusion:
+
+The architecture of Tek Challenge emphasizes modularity, scalability, and maintainability, enabling the development of robust, distributed systems capable of handling complex business requirements. By adhering to best practices and leveraging modern technologies, Tek Challenge delivers a reliable and scalable solution for managing user authentication, user management, and product catalog management.
 
 ### Tests Layer
 Although this project wasn't designed using Test-Driven-Development (TDD), it is highly testable, and implements several features that make it suitable for comprehensive testing. For instance, the Tests Layer can include a suite of unit tests that cover the core functionality of the application. These tests can be designed to validate the behavior of individual components and functions and can be run quickly and easily during the development process.
