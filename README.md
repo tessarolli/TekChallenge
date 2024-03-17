@@ -130,11 +130,11 @@ First you have to setup your local environment with some dependencies:
 
 1. **Docker**:
     - Install Docker Desktop on your local environment, following the instructions
-      here: [Docker Desktop Setup](https://docs.docker.com/get-docker/).
+      here: (Docker Desktop Setup)(https://docs.docker.com/get-docker/).
 
 2. **.NET 8.0**:
     - Ensure you have .NET 8.0 installed. If you don't have it, you can download it
-      here: [Dotnet 7.0](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0).
+      here: (Dotnet 7.0)(https://dotnet.microsoft.com/pt-br/download/dotnet/8.0).
 
 ### Cloning and executing
 After the above requirements are met, you can proceed with the following steps:
@@ -168,7 +168,7 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
 1. **API Gateway:**
 For convenience, there is an Envoy API Gateway available at:
 
-  [http://localhost:5000/]
+  (http://localhost:5000/)
 
 You can use it to access all distributed services resource from a single base url.
 Available endpoints are:
@@ -180,17 +180,17 @@ Available endpoints are:
 2. **Authentication Service:**
     To access the Authentication Service Api Documentation, open a browser window at:
 
-  [http://localhost:5010/swagger/]
+  (http://localhost:5010/swagger/)
 
 3. **Discounts Service:**
     To access the Discounts Service Api Documentation, open a browser window at:
 
-  [http://localhost:5020/swagger/]
+  (http://localhost:5020/swagger/)
 
 4. **Products Service:**
     To access the Products Service Api Documentation, open a browser window at:
 
-  [http://localhost:5030/swagger/]
+  (http://localhost:5030/swagger/)
 
 
 ## Azure Cloud Production Environment
@@ -203,16 +203,16 @@ Ps: Swagger is disabled in production environment.
 You can access your resources in Azure Public Cloud (for a short period of time) from these urls:
 
 1. **API Gateway:**
-  [https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/]
+  (https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
 
 2. **Authentication Service:**
-  [https://auth-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/]
+  (https://auth-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
 
 3. **Discounts Service:**
-  [https://discount-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/]
+  (https://discount-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
 
 4. **Products Service:**
-  [https://product-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/]
+  (https://product-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
 
 ### Production Environment Monitoring Strategy
 
