@@ -36,7 +36,7 @@ Throughout the distributed application source code, you will encounter several a
 
 - **Password Hashing**: Password Hashing is a security-focused architectural pattern used to protect user credentials by securely storing passwords in a hashed and salted format. This design principle involves using cryptographic hashing algorithms, such as bcrypt or Argon2, to convert plain-text passwords into irreversible hash values before storing them in a database. By incorporating password hashing into software systems, developers can mitigate the risk of password-related vulnerabilities, such as password leaks or brute-force attacks. Additionally, salting techniques add an extra layer of security by appending a unique random value to each password before hashing, further enhancing protection against dictionary attacks and rainbow table-based cracking methods. Password hashing promotes data confidentiality and integrity, safeguarding sensitive user information from unauthorized access or exploitation.
 
-- - **Repository Pattern**: The Repository Pattern provides an abstraction layer between the application's business logic and data access mechanisms, such as databases or web services. It centralizes data access logic within repositories, allowing for better separation of concerns and improved testability. By utilizing the Repository Pattern, the application can achieve a cleaner architecture and reduce coupling with specific data storage implementations.
+- **Repository Pattern**: The Repository Pattern provides an abstraction layer between the application's business logic and data access mechanisms, such as databases or web services. It centralizes data access logic within repositories, allowing for better separation of concerns and improved testability. By utilizing the Repository Pattern, the application can achieve a cleaner architecture and reduce coupling with specific data storage implementations.
 
 ### Design Principles and Standards
 
@@ -114,26 +114,10 @@ Each microservice follows a modular architecture, leveraging the principles of C
 
 ### Scalability and Resilience:
 
-- **Horizontal Scaling**: Utilizes Kubernetes to dynamically scale individual microservices based on resource utilization and incoming traffic.
+- **Horizontal Scaling**: Utilizes Azure Container Apps to dynamically scale individual microservices based on resource utilization and incoming traffic.
 
 - **Fault Tolerance**: Implements redundancy and failover mechanisms to ensure system resilience in the face of hardware failures or network issues.
 
-### Monitoring and Logging:
-
-- **Logging**: Generates logs for capturing application events, errors, and diagnostic information. Utilizes centralized logging solutions for aggregation and analysis.
-
-- **Metrics**: Collects performance metrics such as response times, throughput, and error rates to monitor the health and performance of the system. Utilizes tools like Prometheus and Grafana for visualization and analysis.
-
-### Security:
-
-- **JWT Tokens**: Implements secure authentication using JSON Web Tokens (JWT), ensuring that only authenticated users can access protected resources.
-
-- **Encryption**: Utilizes encryption mechanisms to secure sensitive data such as user passwords and authentication tokens.
-
-### Conclusion:
-
-The architecture of Tek Challenge emphasizes modularity, scalability, and maintainability, enabling the development of robust, distributed systems capable of handling complex business requirements. 
-By adhering to best practices and leveraging modern technologies, Tek Challenge delivers a reliable and scalable solution for managing user authentication, user management, and product catalog management.
 
 ### Tests Layer
 -TODO
@@ -235,6 +219,11 @@ You can access your resources in Azure Public Cloud (for a short period of time)
 For monitoring our distributed system, we've chosen Azure Application Insights. Azure Application Insights provides powerful monitoring and diagnostics capabilities for our application, allowing us to collect telemetry data, track performance metrics, detect issues, and gain insights into user behavior. It integrates seamlessly with Azure services and offers features such as application performance monitoring, request tracking, exception logging, and dependency tracking, enabling us to monitor the health and performance of our application effectively.
 
 In addition, we utilize Azure Container Apps to monitor our containerized microservices deployed within the Azure environment. Azure Container Apps offers built-in monitoring and observability features, including container health checks, logs aggregation, metrics visualization, and autoscaling based on resource utilization. By leveraging Azure Container Apps, we can monitor the performance and availability of our microservices, detect and troubleshoot issues in real-time, and ensure the reliability and scalability of our distributed system.
+
+## Conclusion:
+
+The architecture of Tek Challenge emphasizes modularity, scalability, and maintainability, enabling the development of robust, distributed systems capable of handling complex business requirements. 
+By adhering to best practices and leveraging modern technologies, Tek Challenge delivers a reliable and scalable solution for managing user authentication, user management, and product catalog management.
 
 ## Contributors
 - Luiz Tessarolli (@tessarolli)
