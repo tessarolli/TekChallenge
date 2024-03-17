@@ -48,7 +48,7 @@ public class DaprCacheService : ICacheService
     public async Task<bool> SetAsync<T>(string key, T value, CancellationToken cancellationToken = default) 
     {
         _logger.LogInformation($"DaprCache.Set({key})");
-        return await SetAsync<T>(key, value, TimeSpan.FromSeconds(10));
+        return await SetAsync<T>(key, value, TimeSpan.FromMinutes(5));
     }
 
     /// <inheritdoc/>

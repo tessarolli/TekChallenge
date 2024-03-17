@@ -34,7 +34,6 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
-
     app.MapGet("/discount/{productId:long}", (long productId) =>
     {
         var discount = new Discount(productId, new Random().Next(0, 100));
