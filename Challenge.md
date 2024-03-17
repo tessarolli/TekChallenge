@@ -1,4 +1,4 @@
-# Solutions Architect - Challenge
+# Tek Challenge
 
 ## 1. Requirements
 This challenge must include the following:
