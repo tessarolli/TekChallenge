@@ -48,7 +48,7 @@ public static class DependencyInjection
         builder.Services.AddDaprClient();
 
         builder.Services.AddScoped<IExceptionHandlingService, ExceptionHandlingService>();
-       
+
         builder.Services.AddScoped<ICacheService, DaprCacheService>();
 
         return builder.Services;
@@ -75,14 +75,15 @@ public static class DependencyInjection
     /// <returns>Services with dependencies injected.</returns>
     private static IServiceCollection AddSharedDefinitionsAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
-        var jwtSettings = new JwtSettings();
-
-        var days = configuration[$"{JwtSettings.SectionName}:ExpireDays"];
-
-        configuration.Bind(JwtSettings.SectionName, jwtSettings);
+        var jwtSettings = new JwtSettings
+        {
+            Secret = configuration[$"{JwtSettings.SectionName}-secret"] ?? "my-super-secret-key@!12345678901",
+            ExpireDays = int.TryParse(configuration[$"{JwtSettings.SectionName}-expiredays"], out int days) ? days : 1,
+            Issuer = configuration[$"{JwtSettings.SectionName}-issuer"] ?? "TekChallenge",
+            Audience = configuration[$"{JwtSettings.SectionName}-audience"] ?? "TekChallenge",
+        };
 
         services.AddSingleton(Options.Create(jwtSettings));
-
 
         services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters

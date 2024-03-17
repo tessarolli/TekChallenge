@@ -12,7 +12,7 @@ public class JwtSettings
     /// <summary>
     /// Gets The section name for the appsettings.json.
     /// </summary>
-    public static string SectionName { get; } = "JwtSettings";
+    public static string SectionName { get; } = "jwtsettings";
 
     /// <summary>
     /// Gets the Secret for cryptographing the token.

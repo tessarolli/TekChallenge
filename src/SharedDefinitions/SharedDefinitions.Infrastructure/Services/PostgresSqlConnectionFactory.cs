@@ -16,7 +16,7 @@ public class PostgresSqlConnectionFactory : IPostgresSqlConnectionFactory
     /// <summary>
     /// Holds the Connection String Configuration name on the appsettings.json file on the API project.
     /// </summary>
-    public static readonly string ConnectionStringConfigurationName = "ConnectionStrings:PostgreSQL";
+    public static readonly string ConnectionStringConfigurationName = "connectionstring-postgresql";
 
     private readonly IConfiguration _configuration;
 
