@@ -2,7 +2,9 @@
 // Copyright (c) AuthService. All rights reserved.
 // </copyright>
 
+using Google.Api;
 using Microsoft.AspNetCore.Diagnostics;
+using Serilog;
 using System.Reflection;
 using TekChallenge.Services.AuthService.API;
 using TekChallenge.SharedDefinitions.Application;
@@ -46,6 +48,8 @@ var app = builder.Build();
     app.MapControllers();
 
     app.UseAuthorization();
+
+    app.UseSerilogRequestLogging();
 
     app.Run();
 }

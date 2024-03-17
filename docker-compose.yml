@@ -18,7 +18,7 @@ services:
   
   # Auth Service API
   auth-service-api:
-    image: tekchallenge.azurecr.io/auth-service-api:4
+    image: tekchallenge.azurecr.io/auth-service-api:5
     build:
       context: .
       dockerfile: src/Services/AuthService/AuthService.API/Dockerfile
@@ -35,7 +35,7 @@ services:
 
   # Discount Service API
   discount-service-api:
-    image: tekchallenge.azurecr.io/discount-service-api:4
+    image: tekchallenge.azurecr.io/discount-service-api:5
     build:
       context: .
       dockerfile: src/Services/DiscountService/DiscountService.API/Dockerfile
@@ -52,7 +52,7 @@ services:
 
   # Product Service API
   product-service-api:
-    image: tekchallenge.azurecr.io/product-service-api:4
+    image: tekchallenge.azurecr.io/product-service-api:5
     build:
       context: .
       dockerfile: src/Services/ProductService/ProductService.API/Dockerfile
