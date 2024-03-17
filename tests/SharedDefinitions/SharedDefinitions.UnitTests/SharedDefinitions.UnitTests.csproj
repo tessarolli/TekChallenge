@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application - Copy\**" />
+    <Compile Remove="Domain - Copy\**" />
+    <Compile Remove="Infrastructure - Copy\**" />
+    <Compile Remove="Presentation - Copy\**" />
+    <EmbeddedResource Remove="Application - Copy\**" />
+    <EmbeddedResource Remove="Domain - Copy\**" />
+    <EmbeddedResource Remove="Infrastructure - Copy\**" />
+    <EmbeddedResource Remove="Presentation - Copy\**" />
+    <None Remove="Application - Copy\**" />
+    <None Remove="Domain - Copy\**" />
+    <None Remove="Infrastructure - Copy\**" />
+    <None Remove="Presentation - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="NSubstitute" Version="5.1.0" />
+    <PackageReference Include="xunit" Version="2.7.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.7">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="6.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\SharedDefinitions\SharedDefinitions.Infrastructure\SharedDefinitions.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\src\SharedDefinitions\SharedDefinitions.Presentation\SharedDefinitions.Presentation.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -18,7 +18,6 @@ public class GetUserByIdQueryValidator : AbstractValidator<GetUserByIdQuery>
     {
         RuleFor(x => x.Id)
             .NotEmpty()
-            .GreaterThan(0)
-                .WithMessage("User Id cannot be empty");
+            .GreaterThan(0);
     }
 }

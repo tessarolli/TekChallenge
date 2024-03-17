@@ -11,7 +11,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TekChallenge.Services.AuthService.Application.Abstractions.Authentication;
 using TekChallenge.Services.AuthService.Infrastructure.Authentication;
-using TekChallenge.Services.AuthService.Infrastructure.Services;
 using TekChallenge.SharedDefinitions.Application.Abstractions.Services;
 
 namespace TekChallenge.AuthService.Infrastructure;
@@ -30,7 +29,6 @@ public static class DependencyInjection
     public static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
-        services.AddTransient<IAuthenticatedUserService, AuthenticatedUserService>();
 
         return services;
     }
