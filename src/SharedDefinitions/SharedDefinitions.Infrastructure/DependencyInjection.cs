@@ -6,6 +6,7 @@ using System.Text;
 using Dapr.Client;
 using Dapr.Extensions.Configuration;
 using Google.Api;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
 using SharedDefinitions.Infrastructure.Services;
 using TekChallenge.SharedDefinitions.Application.Abstractions.Services;
 using TekChallenge.SharedDefinitions.Infrastructure.Abstractions;
@@ -35,10 +38,8 @@ public static class DependencyInjection
     /// <returns>Services with dependencies injected.</returns>
     public static IServiceCollection AddSharedDefinitionsInfrastructure(this WebApplicationBuilder builder, string serviceName = "")
     {
-        builder.Host.UseSerilog((ctx, lc) =>
-           lc.ReadFrom
-               .Configuration(ctx.Configuration)
-               .Enrich.WithProperty("Application", serviceName));
+        builder
+            .AddLogging(serviceName);
 
         builder.Services
              .AddSharedDefinitionsPersistance(builder.Configuration)
@@ -51,6 +52,32 @@ public static class DependencyInjection
         builder.Services.AddScoped<ICacheService, DaprCacheService>();
 
         return builder.Services;
+    }
+
+    private static void AddLogging(this WebApplicationBuilder builder, string serviceName)
+    {
+        builder.Host.UseSerilog((chostBuilderContextontext, services, loggerConfiguration) =>
+        {
+            loggerConfiguration
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
+                .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
+                .Enrich.FromLogContext()
+                .Enrich.WithProperty("Application", serviceName)
+                .WriteTo.Async(a => a.Console(outputTemplate: "{Application}: [{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}", theme: AnsiConsoleTheme.Code));
+
+            // Adding Seq sink
+            loggerConfiguration.WriteTo.Seq("http://seq");
+
+            // Adding File sink
+            loggerConfiguration.WriteTo.File("logs/access-log-.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: null);
+
+            // Adding Application Insights sink
+            var connectionStringEncoded = "SW5zdHJ1bWVudGF0aW9uS2V5PWEzMzNiMzJjLWMyZWEtNGRkNi05MGQ4LWNlN2JmZGUyNmZjMTtJbmdlc3Rpb25FbmRwb2ludD1odHRwczovL2Vhc3R1cy04LmluLmFwcGxpY2F0aW9uaW5zaWdodHMuYXp1cmUuY29tLztMaXZlRW5kcG9pbnQ9aHR0cHM6Ly9lYXN0dXMubGl2ZWRpYWdub3N0aWNzLm1vbml0b3IuYXp1cmUuY29tLw ==";
+            var telemetryConfiguration = TelemetryConfiguration.CreateFromConfiguration(Encoding.UTF8.GetString(Convert.FromBase64String(connectionStringEncoded)));
+            loggerConfiguration.WriteTo.ApplicationInsights(telemetryConfiguration, TelemetryConverter.Traces);
+        });
     }
 
     /// <summary>
