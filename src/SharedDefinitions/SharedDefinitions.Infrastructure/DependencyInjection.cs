@@ -108,7 +108,7 @@ public static class DependencyInjection
     {
         var daprClient = new DaprClientBuilder().Build();
 
-        configuration.AddDaprSecretStore("local-secret-store", daprClient);
+        configuration.AddDaprSecretStore("secretstore", daprClient);
 
         return services;
     }
