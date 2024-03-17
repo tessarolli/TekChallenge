@@ -1,4 +1,4 @@
-@host=http://localhost:5000
+@host=https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io
 
 POST {{host}}/authentication/login
 Content-Type: application/json

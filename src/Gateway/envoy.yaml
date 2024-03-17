@@ -27,19 +27,25 @@ static_resources:
                 route:  
                   cluster: dapr
                   auto_host_rewrite: true
-                  prefix_rewrite: "/v1.0/invoke/auth-service-api/method/"
+                  prefix_rewrite: "/v1.0/invoke/auth-service-api/method/authentication"
               - match:
                   prefix: "/users"
                 route:
                   cluster: dapr
                   auto_host_rewrite: true
-                  prefix_rewrite: "/v1.0/invoke/auth-service-api/method/"
+                  prefix_rewrite: "/v1.0/invoke/auth-service-api/method/users"
               - match: 
                   prefix: "/products" 
                 route:
                   cluster: dapr
                   auto_host_rewrite: true
-                  prefix_rewrite: "/v1.0/invoke/product-service-api/method/"
+                  prefix_rewrite: "/v1.0/invoke/product-service-api/method/products"
+              - match: 
+                  prefix: "/discount" 
+                route:
+                  cluster: dapr
+                  auto_host_rewrite: true
+                  prefix_rewrite: "/v1.0/invoke/discount-service-api/method/discount"
           http_filters:
            - name: envoy.filters.http.router
              typed_config:
@@ -58,5 +64,5 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: 127.0.0.1
+                address: 0.0.0.0
                 port_value: 3500

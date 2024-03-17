@@ -65,7 +65,7 @@ public class AddProductCommandHandler : ICommandHandler<AddProductCommand, Produ
             addResult.Value.Stock,
             addResult.Value.Price,
             (await discountTask)?.Amount ?? 0,
-            await productDomainModel.Value.FinalPrice(),
+            await addResult.Value.FinalPrice(),
             addResult.Value.CreatedAtUtc));
     }
 }

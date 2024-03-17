@@ -40,11 +40,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Products", "Products", "{A486C5AD-F5B3-4046-8434-39C6BF7CE38C}"
 	ProjectSection(SolutionItems) = preProject
-		Requests\Groups\AddProduct.http = Requests\Groups\AddProduct.http
-		Requests\Groups\DeleteProduct.http = Requests\Groups\DeleteProduct.http
-		Requests\Groups\GetProductById.http = Requests\Groups\GetProductById.http
-		Requests\Groups\GetProductsList.http = Requests\Groups\GetProductsList.http
-		Requests\Groups\UpdateProduct.http = Requests\Groups\UpdateProduct.http
+		Requests\Products\AddProduct.http = Requests\Products\AddProduct.http
+		Requests\Products\DeleteProduct.http = Requests\Products\DeleteProduct.http
+		Requests\Products\GetDiscount.http = Requests\Products\GetDiscount.http
+		Requests\Products\GetProductById.http = Requests\Products\GetProductById.http
+		Requests\Products\GetProductsList.http = Requests\Products\GetProductsList.http
+		Requests\Products\UpdateProduct.http = Requests\Products\UpdateProduct.http
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ADE927F6-F592-4CE2-9412-5BA99CEE6A80}"
@@ -73,8 +74,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{8997C058-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{AA955886-1F19-4456-9375-576195129417}"
 	ProjectSection(SolutionItems) = preProject
-		dapr\components\local-secrets.json = dapr\components\local-secrets.json
-		dapr\components\secretstore.yaml = dapr\components\secretstore.yaml
 		dapr\components\statestore.yaml = dapr\components\statestore.yaml
 	EndProjectSection
 EndProject

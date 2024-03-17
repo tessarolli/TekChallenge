@@ -4,7 +4,7 @@ services:
 
   # Envoy API Gateway
   envoy-api-gateway:
-    image: tessarolli/envoy-api-gateway:1
+    image: tekchallenge.azurecr.io/envoy-api-gateway:4
     build:
       context: .
       dockerfile: src/Gateway/Dockerfile
@@ -18,7 +18,7 @@ services:
   
   # Auth Service API
   auth-service-api:
-    image: tessarolli/auth-service-api:1
+    image: tekchallenge.azurecr.io/auth-service-api:3
     build:
       context: .
       dockerfile: src/Services/AuthService/AuthService.API/Dockerfile
@@ -35,7 +35,7 @@ services:
 
   # Discount Service API
   discount-service-api:
-    image: tessarolli/discount-service-api:1
+    image: tekchallenge.azurecr.io/discount-service-api:3
     build:
       context: .
       dockerfile: src/Services/DiscountService/DiscountService.API/Dockerfile
@@ -52,7 +52,7 @@ services:
 
   # Product Service API
   product-service-api:
-    image: tessarolli/product-service-api:1
+    image: tekchallenge.azurecr.io/product-service-api:3
     build:
       context: .
       dockerfile: src/Services/ProductService/ProductService.API/Dockerfile

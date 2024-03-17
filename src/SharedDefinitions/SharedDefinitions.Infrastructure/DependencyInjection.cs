@@ -41,7 +41,6 @@ public static class DependencyInjection
                .Enrich.WithProperty("Application", serviceName));
 
         builder.Services
-             .AddSharedDefinitionsCustomConfiguration(builder.Configuration)
              .AddSharedDefinitionsPersistance(builder.Configuration)
              .AddSharedDefinitionsAuthentication(builder.Configuration);
 
@@ -77,10 +76,10 @@ public static class DependencyInjection
     {
         var jwtSettings = new JwtSettings
         {
-            Secret = configuration[$"{JwtSettings.SectionName}-secret"] ?? "my-super-secret-key@!12345678901",
-            ExpireDays = int.TryParse(configuration[$"{JwtSettings.SectionName}-expiredays"], out int days) ? days : 1,
-            Issuer = configuration[$"{JwtSettings.SectionName}-issuer"] ?? "TekChallenge",
-            Audience = configuration[$"{JwtSettings.SectionName}-audience"] ?? "TekChallenge",
+            Secret = "my-super-secret-key@!12345678901",
+            ExpireDays = 1,
+            Issuer = "TekChallenge",
+            Audience = "TekChallenge",
         };
 
         services.AddSingleton(Options.Create(jwtSettings));
@@ -96,20 +95,6 @@ public static class DependencyInjection
                 ValidAudience = jwtSettings.Audience,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret)),
             });
-
-        return services;
-    }
-
-    /// <summary>
-    /// Adds Custom Configurations.
-    /// </summary>
-    /// <param name="services">IServiceCollection being extended.</param>
-    /// <param name="configuration">IConfigurationManager being injected.</param>
-    private static IServiceCollection AddSharedDefinitionsCustomConfiguration(this IServiceCollection services, IConfigurationManager configuration)
-    {
-        var daprClient = new DaprClientBuilder().Build();
-
-        configuration.AddDaprSecretStore("secretstore", daprClient);
 
         return services;
     }

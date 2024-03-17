@@ -1,0 +1,5 @@
+@host=https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNSIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJqdGkiOiIyNSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzEwNzcyMDY4LCJpc3MiOiJUZWtDaGFsbGVuZ2UiLCJhdWQiOiJUZWtDaGFsbGVuZ2UifQ.KjxdmV2FJhnwUeW2RNpaCjSi1hzuZIijrvX0bPfsi7w
+
+GET {{host}}/products/3
+Authorization: Bearer {{token}}
