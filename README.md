@@ -4,11 +4,25 @@ Tek Challenge is a Cloud Native Containerized Distributed System built for scali
 It follows Clean Architecture, Domain-Driven Design (DDD), and CQRS (Commands and Queries Responsibility Segregation) principles to ensure the code is organized, maintainable, and scalable.
 The application provides an API for users to Products in a Catalog, along with Authentication and Authorization.
 
+## System Architecture
+The system architecture of Tek Challenge can be visualized as a set of microservices deployed within containers orchestrated by Kubernetes. 
+Each microservice follows a modular architecture, leveraging the principles of Clean Architecture, Domain-Driven Design (DDD), and Command Query Responsibility Segregation (CQRS).
+
+## Architecture and Infrastructure Diagram
+![Diagram](https://github.com/tessarolli/TekChallenge/assets/11618432/209fff2e-050b-4f52-8a8c-38486f51c932)
+
+## Available Features
+- User authentication
+- User management (CRUD)
+- Product Catalog Management (CRUD)
+- Role-based access control (user, manager, and admin)
+- RESTful API
+
 ## Tech stack
 1. **.NET Core**: A free, open-source, cross-platform framework for building modern, cloud-based, internet-connected applications.
 2. **Dapper**: A simple, lightweight ORM (Object-Relational Mapping) that makes it easy to work with relational databases in .NET applications.
 3. **Dapr**: Distributed Application Runtime, is an open-source, portable runtime that simplifies building distributed applications with a focus on interoperability and abstraction of common infrastructure concerns.
-4. **Envoy**: Envoy is a high-performance, open-source edge, and service proxy designed for modern, cloud-native architectures. It offers advanced features such as load balancing, service discovery, dynamic routing, observability, and security. Envoy is widely used in microservices-based applications to handle network communication between services efficiently and reliably. Its extensible architecture and robust features make it a popular choice for building scalable and resilient distributed systems.
+4. **Envoy**: Envoy is a high-performance, open-source edge, and service proxy designed for modern, cloud-native architectures. 
 5. **MediatR**: A library that allows for the easy implementation of the Mediator pattern by providing a simple interface for sending and handling requests between objects, typically in a request-response fashion. This can be especially useful in large applications where there are many classes and dependencies, as it helps to simplify communication and reduce coupling between different parts of the codebase.
 6. **Mapster**: A fast, convention-based object-object mapper that allows you to easily convert objects of one type to another, with support for nested mapping and customization.
 7. **PostgreSQL**: A powerful, open source object-relational database system.
@@ -70,23 +84,6 @@ Throughout the distributed application source code, you will encounter several a
 
 - **Vertical Slicing Architecture**: Vertical Slicing Architecture advocates for organizing software systems into vertical slices, each representing end-to-end functionality across all layers of the application. In this architectural paradigm, every slice encompasses user interfaces, business logic, and data access layers, facilitating a holistic view of system capabilities. Vertical slices prioritize delivering value incrementally by focusing on complete features rather than isolated components. By embracing Vertical Slicing Architecture, development teams can achieve enhanced collaboration, faster delivery cycles, and greater alignment with user needs.
 
-## Architecture Diagram
-Insert Architecture Diagram here
-
-## Infrastructure Diagram
-Insert Infrastructure Diagram here
-
-## Available Features
-- User authentication
-- User management (CRUD)
-- Product Catalog Management (CRUD)
-- Role-based access control (user, manager, and admin)
-- REST API for all actions
-
-## System Architecture
-The system architecture of Tek Challenge can be visualized as a set of microservices deployed within containers orchestrated by Kubernetes. 
-Each microservice follows a modular architecture, leveraging the principles of Clean Architecture, Domain-Driven Design (DDD), and Command Query Responsibility Segregation (CQRS).
-
 ### Components:
 
 1. **API Gateway**: Serves as the entry point for external clients to interact with the system. Routes incoming requests to the appropriate microservices based on the requested endpoint.
@@ -96,13 +93,6 @@ Each microservice follows a modular architecture, leveraging the principles of C
 4. **Discount Service**: Act as a single source of truth for calculating product discount amounts.
 
 5. **Product Catalog Service**: Manages the CRUD operations for products in the catalog. This includes functionalities for adding, updating, deleting, and retrieving product information.
-
-
-### Infrastructure:
-
-- **Container Orchestration (Kubernetes)**: Manages the deployment, scaling, and monitoring of containerized microservices across a cluster of machines. Ensures high availability and fault tolerance.
-
-- **Database (PostgreSQL)**: Provides persistent storage for application data, including user accounts, product information, and access control policies.
 
 ### Communication:
 
@@ -122,9 +112,34 @@ Each microservice follows a modular architecture, leveraging the principles of C
 
 - **Fault Tolerance**: Implements redundancy and failover mechanisms to ensure system resilience in the face of hardware failures or network issues.
 
+## Tests Layer
+The Tests Layer is a crucial component aimed at ensuring the reliability, functionality, and correctness of our software system. It comprises a suite of automated tests developed using popular testing frameworks including Xunit, Nsubstitute, and Fluent Assertions. This documentation provides an overview of the purpose, structure, and usage of the Tests Layer.
 
-### Tests Layer
--TODO
+### Purpose
+
+The primary purpose of the Tests Layer is to validate the behavior of our software components across various scenarios and edge cases. By automating tests, we can systematically verify that each unit of code performs as expected, detects regressions, and maintains compatibility as the codebase evolves. This layer also aids in identifying and debugging issues early in the development cycle, promoting higher software quality and faster iteration.
+
+### Components
+
+#### 1. Xunit
+
+[Xunit](https://xunit.net/) is a popular unit testing framework for .NET applications. It provides a simple, extensible architecture for writing and executing unit tests in C#. Xunit offers features such as parameterized tests, test categorization, and test parallelization, enabling efficient and comprehensive test coverage.
+
+#### 2. Nsubstitute
+
+[Nsubstitute](https://nsubstitute.github.io/) is a flexible mocking library for .NET. It allows developers to create mock objects and define their behaviors during test setup. Nsubstitute simplifies the process of simulating dependencies, enabling isolated unit testing and facilitating the testing of components in isolation from their collaborators.
+
+#### 3. Fluent Assertions
+
+[Fluent Assertions](https://fluentassertions.com/) is a fluent assertion library that enhances the readability and expressiveness of test assertions in C#. It provides a rich set of assertion methods and a fluent syntax for composing assertions in a natural language style. Fluent Assertions promotes clear, descriptive test code that is easier to understand and maintain.
+
+### Structure
+
+The Tests Layer is organized into separate test projects corresponding to the different layers and modules of our application architecture. Each test project contains test classes that target specific units of code, such as classes, methods, or functional units. Within these test classes, individual test cases are defined to cover different scenarios and behaviors.
+
+### Usage
+
+Developers can run the tests using integrated development environment (IDE) tools such as Visual Studio or via command-line interfaces using build automation tools like MSBuild or .NET CLI. To execute the tests, simply build the solution and run the test runner, which will execute all tests and report the results, including any failures or errors encountered during the test run.
 
 ## Running in Local Development Environment
 To run the application locally, follow these steps:
@@ -134,11 +149,11 @@ First, you have to set up your local environment with some dependencies:
 
 1. **Docker**:
     - Install Docker Desktop on your local environment, following the instructions
-      here: (Docker Desktop Setup)(https://docs.docker.com/get-docker/).
+      here: [Docker Desktop Setup](https://docs.docker.com/get-docker/).
 
 2. **.NET 8.0**:
     - Ensure you have .NET 8.0 installed. If you don't have it, you can download it
-      here: (Dotnet 7.0)(https://dotnet.microsoft.com/pt-br/download/dotnet/8.0).
+      here: [Dotnet 8.0](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0).
 
 ### Cloning and executing
 After the above requirements are met, you can proceed with the following steps:
@@ -146,13 +161,13 @@ After the above requirements are met, you can proceed with the following steps:
 1. **Clone the repository:**
 
 ```shell
-git clone https://github.com/tessarolli/TekChallenge.git`
+git clone https://github.com/tessarolli/TekChallenge.git
 ```
 
 2. **Enter the TekChallenge Directory:**
 
 ```shell
-cd TekChallenge`
+cd TekChallenge
 ```
 
 3. **Install dependencies:**
@@ -172,7 +187,7 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
 1. **API Gateway:**
 For convenience, there is an Envoy API Gateway available at:
 
-  (http://localhost:5000/)
+  http://localhost:5000/
 
 You can use it to access all distributed services resources from a single base URL.
 Available endpoints are:
@@ -184,17 +199,17 @@ Available endpoints are:
 2. **Authentication Service:**
     To access the Authentication Service Api Documentation, open a browser window at:
 
-  (http://localhost:5010/swagger/)
+  http://localhost:5010/swagger/
 
 3. **Discounts Service:**
     To access the Discounts Service Api Documentation, open a browser window at:
 
-  (http://localhost:5020/swagger/)
+  http://localhost:5020/swagger/
 
 4. **Products Service:**
     To access the Products Service Api Documentation, open a browser window at:
 
-  (http://localhost:5030/swagger/)
+  http://localhost:5030/swagger/
 
 
 ## Azure Cloud Production Environment
@@ -207,16 +222,18 @@ Ps: Swagger is disabled in the production environment.
 You can access your resources in Azure Public Cloud (for a short time) from these URLs:
 
 1. **API Gateway:**
-  (https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
+https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
 
 2. **Authentication Service:**
-  (https://auth-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
+   https://auth-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
 
 3. **Discounts Service:**
-  (https://discount-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
+   https://discount-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
 
 4. **Products Service:**
-  (https://product-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
+   https://product-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
+
+If you have Visual Studio installed, you can use the provided .http files available under **Requests** folder pre-configure for interacting with the production API gateway.
 
 ### Production Environment Monitoring Strategy
 
