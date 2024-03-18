@@ -187,7 +187,7 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
 1. **API Gateway:**
 For convenience, there is an Envoy API Gateway available at:
 
-  (http://localhost:5000/)
+  http://localhost:5000/
 
 You can use it to access all distributed services resources from a single base URL.
 Available endpoints are:
@@ -204,12 +204,12 @@ Available endpoints are:
 3. **Discounts Service:**
     To access the Discounts Service Api Documentation, open a browser window at:
 
-  (http://localhost:5020/swagger/)
+  http://localhost:5020/swagger/
 
 4. **Products Service:**
     To access the Products Service Api Documentation, open a browser window at:
 
-  (http://localhost:5030/swagger/)
+  http://localhost:5030/swagger/
 
 
 ## Azure Cloud Production Environment
@@ -222,16 +222,18 @@ Ps: Swagger is disabled in the production environment.
 You can access your resources in Azure Public Cloud (for a short time) from these URLs:
 
 1. **API Gateway:**
-  (https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
+https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
 
 2. **Authentication Service:**
-  (https://auth-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
+   https://auth-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
 
 3. **Discounts Service:**
-  (https://discount-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
+   https://discount-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
 
 4. **Products Service:**
-  (https://product-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/)
+   https://product-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
+
+If you have Visual Studio installed, you can use the provided .http files available under **Requests** folder pre-configure for interacting with the production API gateway.
 
 ### Production Environment Monitoring Strategy
 
