@@ -234,6 +234,10 @@ https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
    https://product-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
 
 If you have Visual Studio installed, you can use the provided .http files available under **Requests** folder pre-configure for interacting with the production API gateway.
+- Start with one of the login requests, I would recommend the AdminLogin.http first.
+- Next, copy the token from the response, you will need it in the following requests.
+- Choose another request you want to test out from the available list, and replace the existing @token=ey... with the new token you just generated on the LoginRequest, and you are all set.
+- Just be sure to use the same token for every request you try out.
 
 ### Production Environment Monitoring Strategy
 
