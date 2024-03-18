@@ -2,6 +2,7 @@
 // Copyright (c) TekChallenge.Services.ProductService. All rights reserved.
 // </copyright>
 
+using System;
 using System.Data;
 using System.Data.Common;
 using System.Text;
@@ -60,12 +61,7 @@ public static class DependencyInjection
 
     private static void AddLoggingAndTracing(this WebApplicationBuilder builder, string serviceName)
     {
-        var connectionStringEncoded = "SW5zdHJ1bWVudGF0aW9uS2V5PWEzMzNiMzJjLWMyZWEtNGRkNi05MGQ4LWNlN2JmZGUyNmZjMTtJbmdlc3Rpb25FbmRwb2ludD1odHRwczovL2Vhc3R1cy04LmluLmFwcGxpY2F0aW9uaW5zaWdodHMuYXp1cmUuY29tLztMaXZlRW5kcG9pbnQ9aHR0cHM6Ly9lYXN0dXMubGl2ZWRpYWdub3N0aWNzLm1vbml0b3IuYXp1cmUuY29tLw ==";
-        var telemetryConfiguration = TelemetryConfiguration.CreateFromConfiguration(Encoding.UTF8.GetString(Convert.FromBase64String(connectionStringEncoded)));
-        builder.Services.AddApplicationInsightsTelemetry((serviceOptions) =>
-        {
-            serviceOptions.ConnectionString = telemetryConfiguration.ConnectionString;
-        });
+        builder.Services.AddApplicationInsightsTelemetry();
 
         builder.Host.UseSerilog((chostBuilderContextontext, services, loggerConfiguration) =>
         {
@@ -85,7 +81,7 @@ public static class DependencyInjection
             loggerConfiguration.WriteTo.File("logs/access-log-.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: null);
 
             // Adding Application Insights sink
-            loggerConfiguration.WriteTo.ApplicationInsights(telemetryConfiguration, TelemetryConverter.Traces);
+            loggerConfiguration.WriteTo.ApplicationInsights(services.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces);
         });
     }
 
