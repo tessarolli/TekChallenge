@@ -199,7 +199,7 @@ Available endpoints are:
 2. **Authentication Service:**
     To access the Authentication Service Api Documentation, open a browser window at:
 
-  [http://localhost:5010/swagger/]
+  http://localhost:5010/swagger/
 
 3. **Discounts Service:**
     To access the Discounts Service Api Documentation, open a browser window at:
