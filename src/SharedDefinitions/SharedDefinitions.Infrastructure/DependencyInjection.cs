@@ -2,6 +2,8 @@
 // Copyright (c) TekChallenge.Services.ProductService. All rights reserved.
 // </copyright>
 
+using System.Data;
+using System.Data.Common;
 using System.Text;
 using Dapr.Client;
 using Dapr.Extensions.Configuration;
@@ -14,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Npgsql;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -22,6 +25,7 @@ using TekChallenge.SharedDefinitions.Application.Abstractions.Services;
 using TekChallenge.SharedDefinitions.Infrastructure.Abstractions;
 using TekChallenge.SharedDefinitions.Infrastructure.Authentication;
 using TekChallenge.SharedDefinitions.Infrastructure.Services;
+using TekChallenge.SharedDefinitions.Infrastructure.Utilities;
 
 namespace TekChallenge.SharedDefinitions.Infrastructure;
 
@@ -93,7 +97,9 @@ public static class DependencyInjection
     /// <returns>Services with dependencies injected.</returns>
     private static IServiceCollection AddSharedDefinitionsPersistance(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IPostgresSqlConnectionFactory, PostgresSqlConnectionFactory>();
+        services.AddScoped<IDapperUtility, DapperUtility>();
+
+        services.AddScoped(typeof(ISqlConnectionFactory<>), typeof(PostgresSqlConnectionFactory<>));
 
         return services;
     }

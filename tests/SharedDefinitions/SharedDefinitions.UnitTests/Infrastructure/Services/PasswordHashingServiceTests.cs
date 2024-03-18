@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using TekChallenge.SharedDefinitions.Infrastructure.Services;
+﻿using TekChallenge.SharedDefinitions.Infrastructure.Services;
 
 namespace TekChallenge.Tests.SharedDefinitions.Infrastructure.Services;
 

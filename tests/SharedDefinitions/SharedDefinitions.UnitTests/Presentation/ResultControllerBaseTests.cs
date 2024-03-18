@@ -3,13 +3,7 @@ using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TekChallenge.SharedDefinitions.Application.Abstractions.Services;
-using TekChallenge.SharedDefinitions.Application.Common.Errors;
 using TekChallenge.SharedDefinitions.Presentation.Controllers;
 
 namespace TekChallenge.Tests.SharedDefinitions.Presentation;

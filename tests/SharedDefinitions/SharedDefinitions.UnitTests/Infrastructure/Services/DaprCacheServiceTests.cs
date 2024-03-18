@@ -1,27 +1,20 @@
 ﻿using Dapr.Client;
 using Microsoft.Extensions.Logging;
 using SharedDefinitions.Infrastructure.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TekChallenge.SharedDefinitions.Application.Abstractions.Services;
-using TekChallenge.SharedDefinitions.Infrastructure.Services;
 
 namespace TekChallenge.Tests.SharedDefinitions.Infrastructure.Services;
 
 public class DaprCacheServiceTests
 {
     private readonly DaprClient _daprClient;
-    private readonly ILogger<DaprCacheService> _logger;
     private readonly ICacheService _cacheService;
 
     public DaprCacheServiceTests()
     {
         _daprClient = Substitute.For<DaprClient>();
-        _logger = Substitute.For<ILogger<DaprCacheService>>();
-        _cacheService = new DaprCacheService(_daprClient, _logger);
+        var logger = Substitute.For<ILogger<DaprCacheService>>();
+        _cacheService = new DaprCacheService(_daprClient, logger);
     }
 
     [Fact]
@@ -44,7 +37,7 @@ public class DaprCacheServiceTests
     {
         // Arrange
         string key = "invalidKey";
-        _daprClient.GetStateAsync<string>(Arg.Any<string>(), key, cancellationToken: Arg.Any<CancellationToken>()).Returns(Task.FromResult<string>(null));
+        _daprClient.GetStateAsync<string?>(Arg.Any<string>(), key, cancellationToken: Arg.Any<CancellationToken>()).Returns(Task.FromResult<string?>(null));
 
         // Act
         var result = await _cacheService.GetAsync<string>(key);

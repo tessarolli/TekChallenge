@@ -27,21 +27,22 @@ namespace TekChallenge.Services.ProductService.Infrastructure.Repositories;
 public class ProductRepository : IProductRepository
 {
     private readonly ICacheService _cache;
-    private readonly DapperUtility _db;
+    private readonly IDapperUtility _db;
     private readonly DaprClient _dapr;
     private readonly ILogger _logger;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ProductRepository"/> class.
     /// </summary>
-    /// <param name="postgresSqlConnectionFactory">IPostgresSqlConnectionFactory to inject.</param>
+    /// <param name="dapperUtility">IDapperUtility to inject.</param>
+    /// <param name="connectionFactory">ISqlConnectionFactory to inject.</param>
     /// <param name="logger">ILogger to inject.</param>
     /// <param name="dapr">DaprClient to inject.</param>
     /// <param name="cache">ICacheService to inject.</param>
-    public ProductRepository(IPostgresSqlConnectionFactory postgresSqlConnectionFactory, ILogger<ProductRepository> logger, DaprClient dapr, ICacheService cache)
+    public ProductRepository(IDapperUtility dapperUtility, ISqlConnectionFactory<DbConnection> connectionFactory, ILogger<ProductRepository> logger, DaprClient dapr, ICacheService cache)
     {
         _logger = logger;
-        _db = new DapperUtility(postgresSqlConnectionFactory);
+        _db = dapperUtility;
         _dapr = dapr;
         _cache = cache;
     }
@@ -100,7 +101,7 @@ public class ProductRepository : IProductRepository
     {
         _logger.LogInformation("ProductRepository.AddAsync({Product})", Product.Name);
 
-        using var trans = await _db.BeginTransactionAsync();
+        using var trans = _db.BeginTransaction();
 
         try
         {
@@ -125,7 +126,7 @@ public class ProductRepository : IProductRepository
 
             var newProductId = await _db.ExecuteScalarAsync(insertSql, parameters, transaction: trans);
 
-            await _db.CloseTransactionAsync(trans, true);
+            _db.CloseTransaction(trans, true);
 
             return await GetByIdAsync(new ProductId(newProductId));
         }
@@ -133,9 +134,9 @@ public class ProductRepository : IProductRepository
         {
             _logger.LogError(e, null);
 
-            await trans.RollbackAsync();
+            trans.Rollback();
 
-            await _db.CloseTransactionAsync(trans);
+            _db.CloseTransaction(trans);
 
             throw;
         }
@@ -146,7 +147,7 @@ public class ProductRepository : IProductRepository
     {
         _logger.LogInformation("ProductRepository.UpdateAsync({Product})", Product.Name);
 
-        using var trans = await _db.BeginTransactionAsync();
+        using var trans = _db.BeginTransaction();
 
         try
         {
@@ -178,18 +179,18 @@ public class ProductRepository : IProductRepository
 
             await _db.ExecuteAsync(updateSql, parameters, transaction: trans);
 
-            await trans.CommitAsync();
+            trans.Commit();
         }
         catch (Exception e)
         {
             _logger.LogError(e, null);
 
-            await trans.RollbackAsync();
+            trans.Rollback();
 
             throw;
         }
 
-        await _db.CloseTransactionAsync(trans);
+        _db.CloseTransaction(trans);
 
         return await GetByIdAsync(Product.Id);
     }
@@ -199,7 +200,7 @@ public class ProductRepository : IProductRepository
     {
         _logger.LogInformation("ProductRepository.RemoveAsync({Product})", productId);
 
-        using var trans = await _db.BeginTransactionAsync();
+        using var trans = _db.BeginTransaction();
 
         try
         {
@@ -213,18 +214,18 @@ public class ProductRepository : IProductRepository
 
             await _db.ExecuteAsync(deleteDocumentAccessSql, parameter, transaction: trans);
 
-            await trans.CommitAsync();
+            trans.Commit();
         }
         catch (Exception e)
         {
             _logger.LogError(e, null);
 
-            await trans.RollbackAsync();
+            trans.Rollback();
 
             throw;
         }
 
-        await _db.CloseTransactionAsync(trans);
+        _db.CloseTransaction(trans);
 
         return Result.Ok();
     }

@@ -3,6 +3,7 @@
 // </copyright>
 
 using System.Data;
+using System.Data.Common;
 using FluentResults;
 using Microsoft.Extensions.Logging;
 using TekChallenge.Services.AuthService.Application.Abstractions.Repositories;
@@ -13,7 +14,6 @@ using TekChallenge.Services.AuthService.Infrastructure.Dtos;
 using TekChallenge.SharedDefinitions.Application.Common.Errors;
 using TekChallenge.SharedDefinitions.Domain.Common.Abstractions;
 using TekChallenge.SharedDefinitions.Infrastructure.Abstractions;
-using TekChallenge.SharedDefinitions.Infrastructure.Utilities;
 
 namespace TekChallenge.Services.AuthService.Infrastructure.Repositories;
 
@@ -24,19 +24,20 @@ public class UserRepository : IUserRepository
 {
     private readonly ILogger _logger;
     private readonly IPasswordHashingService _passwordHasher;
-    private readonly DapperUtility _db;
+    private readonly IDapperUtility _db;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="UserRepository"/> class.
     /// </summary>
-    /// <param name="postgresSqlConnectionFactory">IPostgresSqlConnectionFactory to inject.</param>
+    /// <param name="dapperUtility">IDapperUtility to inject.</param>
+    /// <param name="connectionFactory">ISqlConnectionFactory to inject.</param>
     /// <param name="passwordHasher">IPasswordHashingService to inject.</param>
     /// <param name="logger">ILogger to inject.</param>
-    public UserRepository(IPostgresSqlConnectionFactory postgresSqlConnectionFactory, ILogger<UserRepository> logger, IPasswordHashingService passwordHasher)
+    public UserRepository(IDapperUtility dapperUtility, ISqlConnectionFactory<DbConnection> connectionFactory, ILogger<UserRepository> logger, IPasswordHashingService passwordHasher)
     {
         _logger = logger;
         _passwordHasher = passwordHasher;
-        _db = new DapperUtility(postgresSqlConnectionFactory);
+        _db = dapperUtility;
     }
 
     /// <inheritdoc/>

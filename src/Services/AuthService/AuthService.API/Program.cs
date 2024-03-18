@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Serilog;
 using System.Reflection;
 using TekChallenge.Services.AuthService.API;
+using TekChallenge.Services.AuthService.Application;
 using TekChallenge.SharedDefinitions.Application;
 using TekChallenge.SharedDefinitions.Infrastructure;
 
@@ -15,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder
         .AddSharedDefinitionsInfrastructure("AuthService")
         .AddLocalResources()
-        .AddSharedDefinitionsApplication(typeof(TekChallenge.Services.AuthService.Application.AssemblyAnchor).Assembly)
+        .AddSharedDefinitionsApplication(typeof(AssemblyAnchor).Assembly)
         .AddPresentation();
 }
 

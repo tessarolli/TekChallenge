@@ -7,7 +7,7 @@ using TekChallenge.Services.AuthService.Domain.Users;
 using TekChallenge.SharedDefinitions.Application.Common.Errors;
 using TekChallenge.SharedDefinitions.Domain.Common.Abstractions;
 
-namespace TekChallenge.Tests.Services.AuthService;
+namespace TekChallenge.Tests.Services.AuthService.Application;
 
 public class AuthenticationCommandAndQueriesTests
 {

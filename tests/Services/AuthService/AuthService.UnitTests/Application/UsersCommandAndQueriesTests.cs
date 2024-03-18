@@ -12,7 +12,7 @@ using TekChallenge.Services.AuthService.Domain.Users;
 using TekChallenge.Services.AuthService.Domain.Users.ValueObjects;
 using TekChallenge.SharedDefinitions.Domain.Common.Abstractions;
 
-namespace TekChallenge.Tests.Services.AuthService;
+namespace TekChallenge.Tests.Services.AuthService.Application;
 
 public class UsersCommandAndQueriesTests
 {

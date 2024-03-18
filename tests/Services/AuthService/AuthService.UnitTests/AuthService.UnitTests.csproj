@@ -25,14 +25,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Infrastructure\" />
-    <Folder Include="Presentation\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Services\AuthService\AuthService.Application\AuthService.Application.csproj" />
     <ProjectReference Include="..\..\..\..\src\Services\AuthService\AuthService.Domain\AuthService.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Services\AuthService\AuthService.Infrastructure\AuthService.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SharedDefinitions\SharedDefinitions.Application\SharedDefinitions.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SharedDefinitions\SharedDefinitions.Domain\SharedDefinitions.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SharedDefinitions\SharedDefinitions.Infrastructure\SharedDefinitions.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SharedDefinitions\SharedDefinitions.Presentation\SharedDefinitions.Presentation.csproj" />
   </ItemGroup>
 
 </Project>
