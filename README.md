@@ -152,11 +152,11 @@ First, you have to set up your local environment with some dependencies:
 
 1. **Docker**:
     - Install Docker Desktop on your local environment, following the instructions
-      here: (Docker Desktop Setup)(https://docs.docker.com/get-docker/).
+      here: [Docker Desktop Setup](https://docs.docker.com/get-docker/).
 
 2. **.NET 8.0**:
     - Ensure you have .NET 8.0 installed. If you don't have it, you can download it
-      here: (Dotnet 7.0)(https://dotnet.microsoft.com/pt-br/download/dotnet/8.0).
+      here: [Dotnet 8.0](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0).
 
 ### Cloning and executing
 After the above requirements are met, you can proceed with the following steps:
