@@ -170,7 +170,7 @@ git clone https://github.com/tessarolli/TekChallenge.git`
 2. **Enter the TekChallenge Directory:**
 
 ```shell
-cd TekChallenge`
+cd TekChallenge
 ```
 
 3. **Install dependencies:**
