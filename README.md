@@ -164,7 +164,7 @@ After the above requirements are met, you can proceed with the following steps:
 1. **Clone the repository:**
 
 ```shell
-git clone https://github.com/tessarolli/TekChallenge.git`
+git clone https://github.com/tessarolli/TekChallenge.git
 ```
 
 2. **Enter the TekChallenge Directory:**
