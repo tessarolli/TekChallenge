@@ -4,11 +4,25 @@ Tek Challenge is a Cloud Native Containerized Distributed System built for scali
 It follows Clean Architecture, Domain-Driven Design (DDD), and CQRS (Commands and Queries Responsibility Segregation) principles to ensure the code is organized, maintainable, and scalable.
 The application provides an API for users to Products in a Catalog, along with Authentication and Authorization.
 
+## System Architecture
+The system architecture of Tek Challenge can be visualized as a set of microservices deployed within containers orchestrated by Kubernetes. 
+Each microservice follows a modular architecture, leveraging the principles of Clean Architecture, Domain-Driven Design (DDD), and Command Query Responsibility Segregation (CQRS).
+
+## Architecture and Infrastructure Diagram
+![Diagram](https://github.com/tessarolli/TekChallenge/assets/11618432/209fff2e-050b-4f52-8a8c-38486f51c932)
+
+## Available Features
+- User authentication
+- User management (CRUD)
+- Product Catalog Management (CRUD)
+- Role-based access control (user, manager, and admin)
+- RESTful API
+
 ## Tech stack
 1. **.NET Core**: A free, open-source, cross-platform framework for building modern, cloud-based, internet-connected applications.
 2. **Dapper**: A simple, lightweight ORM (Object-Relational Mapping) that makes it easy to work with relational databases in .NET applications.
 3. **Dapr**: Distributed Application Runtime, is an open-source, portable runtime that simplifies building distributed applications with a focus on interoperability and abstraction of common infrastructure concerns.
-4. **Envoy**: Envoy is a high-performance, open-source edge, and service proxy designed for modern, cloud-native architectures. It offers advanced features such as load balancing, service discovery, dynamic routing, observability, and security. Envoy is widely used in microservices-based applications to handle network communication between services efficiently and reliably. Its extensible architecture and robust features make it a popular choice for building scalable and resilient distributed systems.
+4. **Envoy**: Envoy is a high-performance, open-source edge, and service proxy designed for modern, cloud-native architectures. 
 5. **MediatR**: A library that allows for the easy implementation of the Mediator pattern by providing a simple interface for sending and handling requests between objects, typically in a request-response fashion. This can be especially useful in large applications where there are many classes and dependencies, as it helps to simplify communication and reduce coupling between different parts of the codebase.
 6. **Mapster**: A fast, convention-based object-object mapper that allows you to easily convert objects of one type to another, with support for nested mapping and customization.
 7. **PostgreSQL**: A powerful, open source object-relational database system.
@@ -69,20 +83,6 @@ Throughout the distributed application source code, you will encounter several a
 - **Test-Driven Development (TDD)**: Test-Driven Development is a software development approach where tests are written before the implementation code. It emphasizes creating automated tests that define the desired functionality of the code before writing the actual code. This iterative process helps ensure that the code meets the specified requirements and maintains desired functionality as it evolves. TDD improves code quality, encourages modular design, and provides a safety net for refactoring, resulting in more robust and maintainable software.
 
 - **Vertical Slicing Architecture**: Vertical Slicing Architecture advocates for organizing software systems into vertical slices, each representing end-to-end functionality across all layers of the application. In this architectural paradigm, every slice encompasses user interfaces, business logic, and data access layers, facilitating a holistic view of system capabilities. Vertical slices prioritize delivering value incrementally by focusing on complete features rather than isolated components. By embracing Vertical Slicing Architecture, development teams can achieve enhanced collaboration, faster delivery cycles, and greater alignment with user needs.
-
-## Architecture and Infrastructure Diagram
-![Diagram](https://github.com/tessarolli/TekChallenge/assets/11618432/209fff2e-050b-4f52-8a8c-38486f51c932)
-
-## Available Features
-- User authentication
-- User management (CRUD)
-- Product Catalog Management (CRUD)
-- Role-based access control (user, manager, and admin)
-- REST API for all actions
-
-## System Architecture
-The system architecture of Tek Challenge can be visualized as a set of microservices deployed within containers orchestrated by Kubernetes. 
-Each microservice follows a modular architecture, leveraging the principles of Clean Architecture, Domain-Driven Design (DDD), and Command Query Responsibility Segregation (CQRS).
 
 ### Components:
 
