@@ -70,11 +70,8 @@ Throughout the distributed application source code, you will encounter several a
 
 - **Vertical Slicing Architecture**: Vertical Slicing Architecture advocates for organizing software systems into vertical slices, each representing end-to-end functionality across all layers of the application. In this architectural paradigm, every slice encompasses user interfaces, business logic, and data access layers, facilitating a holistic view of system capabilities. Vertical slices prioritize delivering value incrementally by focusing on complete features rather than isolated components. By embracing Vertical Slicing Architecture, development teams can achieve enhanced collaboration, faster delivery cycles, and greater alignment with user needs.
 
-## Architecture Diagram
-Insert Architecture Diagram here
-
-## Infrastructure Diagram
-Insert Infrastructure Diagram here
+## Architecture and Infrastructure Diagram
+![Diagram](https://github.com/tessarolli/TekChallenge/assets/11618432/209fff2e-050b-4f52-8a8c-38486f51c932)
 
 ## Available Features
 - User authentication
