@@ -97,13 +97,6 @@ Each microservice follows a modular architecture, leveraging the principles of C
 
 5. **Product Catalog Service**: Manages the CRUD operations for products in the catalog. This includes functionalities for adding, updating, deleting, and retrieving product information.
 
-
-### Infrastructure:
-
-- **Container Orchestration (Kubernetes)**: Manages the deployment, scaling, and monitoring of containerized microservices across a cluster of machines. Ensures high availability and fault tolerance.
-
-- **Database (PostgreSQL)**: Provides persistent storage for application data, including user accounts, product information, and access control policies.
-
 ### Communication:
 
 - **REST API**: Exposes a set of RESTful endpoints for external clients to interact with the system. Utilizes HTTP methods such as GET, POST, PUT, and DELETE for performing CRUD operations.
@@ -121,7 +114,6 @@ Each microservice follows a modular architecture, leveraging the principles of C
 - **Horizontal Scaling**: Utilizes Azure Container Apps to dynamically scale individual microservices based on resource utilization and incoming traffic.
 
 - **Fault Tolerance**: Implements redundancy and failover mechanisms to ensure system resilience in the face of hardware failures or network issues.
-
 
 ### Tests Layer
 The Tests Layer is a crucial component aimed at ensuring the reliability, functionality, and correctness of our software system. It comprises a suite of automated tests developed using popular testing frameworks including Xunit, Nsubstitute, and Fluent Assertions. This documentation provides an overview of the purpose, structure, and usage of the Tests Layer.
