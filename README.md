@@ -124,7 +124,33 @@ Each microservice follows a modular architecture, leveraging the principles of C
 
 
 ### Tests Layer
--TODO
+The Tests Layer is a crucial component aimed at ensuring the reliability, functionality, and correctness of our software system. It comprises a suite of automated tests developed using popular testing frameworks including Xunit, Nsubstitute, and Fluent Assertions. This documentation provides an overview of the purpose, structure, and usage of the Tests Layer.
+
+### Purpose
+
+The primary purpose of the Tests Layer is to validate the behavior of our software components across various scenarios and edge cases. By automating tests, we can systematically verify that each unit of code performs as expected, detects regressions, and maintains compatibility as the codebase evolves. This layer also aids in identifying and debugging issues early in the development cycle, promoting higher software quality and faster iteration.
+
+### Components
+
+#### 1. Xunit
+
+[Xunit](https://xunit.net/) is a popular unit testing framework for .NET applications. It provides a simple, extensible architecture for writing and executing unit tests in C#. Xunit offers features such as parameterized tests, test categorization, and test parallelization, enabling efficient and comprehensive test coverage.
+
+#### 2. Nsubstitute
+
+[Nsubstitute](https://nsubstitute.github.io/) is a flexible mocking library for .NET. It allows developers to create mock objects and define their behaviors during test setup. Nsubstitute simplifies the process of simulating dependencies, enabling isolated unit testing and facilitating the testing of components in isolation from their collaborators.
+
+#### 3. Fluent Assertions
+
+[Fluent Assertions](https://fluentassertions.com/) is a fluent assertion library that enhances the readability and expressiveness of test assertions in C#. It provides a rich set of assertion methods and a fluent syntax for composing assertions in a natural language style. Fluent Assertions promotes clear, descriptive test code that is easier to understand and maintain.
+
+### Structure
+
+The Tests Layer is organized into separate test projects corresponding to the different layers and modules of our application architecture. Each test project contains test classes that target specific units of code, such as classes, methods, or functional units. Within these test classes, individual test cases are defined to cover different scenarios and behaviors.
+
+### Usage
+
+Developers can run the tests using integrated development environment (IDE) tools such as Visual Studio or via command-line interfaces using build automation tools like MSBuild or .NET CLI. To execute the tests, simply build the solution and run the test runner, which will execute all tests and report the results, including any failures or errors encountered during the test run.
 
 ## Running in Local Development Environment
 To run the application locally, follow these steps:
