@@ -21,11 +21,10 @@ public class ProductRepositoryTests
     public ProductRepositoryTests()
     {
         _dapper = Substitute.For<IDapperUtility>();
-        var connectionFactory = Substitute.For<ISqlConnectionFactory<DbConnection>>();
         var logger = Substitute.For<ILogger<ProductRepository>>();
         var daprClient = Substitute.For<DaprClient>();
         var cacheService = Substitute.For<ICacheService>();
-        _userRepository = new ProductRepository(_dapper, connectionFactory, logger, daprClient, cacheService);
+        _userRepository = new ProductRepository(_dapper, logger, daprClient, cacheService);
     }
 
     [Fact]
@@ -52,8 +51,8 @@ public class ProductRepositoryTests
         // Arrange
         var products = new List<ProductDb>
         {
-            new ProductDb(1, 1, "Test Product 1", "Test Description", 0, 0, 0, DateTime.UtcNow),
-            new ProductDb(2, 1, "Test Product 2", "Test Description", 0, 0, 0, DateTime.UtcNow),
+            new(1, 1, "Test Product 1", "Test Description", 0, 0, 0, DateTime.UtcNow),
+            new(2, 1, "Test Product 2", "Test Description", 0, 0, 0, DateTime.UtcNow),
         };
         _dapper.QueryAsync<ProductDb>(Arg.Any<string>()).Returns(Task.FromResult<IEnumerable<ProductDb>>(products));
 

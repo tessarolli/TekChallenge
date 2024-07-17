@@ -29,8 +29,8 @@ public class ResultControllerBaseTests
         // Arrange
         var controller = new ResultControllerBase<TestController>(_mediator, _mapper, _logger, _exceptionHandlingService);
         var result = Result.Ok(true);
-        Func<ActionResult> successAction = () => new OkResult();
-        Action failureAction = () => { };
+        static ActionResult successAction() => new OkResult();
+        static void failureAction() { }
 
         // Act
         var actionResult = controller.ValidateResult(result, successAction, failureAction);

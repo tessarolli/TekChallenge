@@ -30,10 +30,9 @@ public class UserRepository : IUserRepository
     /// Initializes a new instance of the <see cref="UserRepository"/> class.
     /// </summary>
     /// <param name="dapperUtility">IDapperUtility to inject.</param>
-    /// <param name="connectionFactory">ISqlConnectionFactory to inject.</param>
     /// <param name="passwordHasher">IPasswordHashingService to inject.</param>
     /// <param name="logger">ILogger to inject.</param>
-    public UserRepository(IDapperUtility dapperUtility, ISqlConnectionFactory<DbConnection> connectionFactory, ILogger<UserRepository> logger, IPasswordHashingService passwordHasher)
+    public UserRepository(IDapperUtility dapperUtility, ILogger<UserRepository> logger, IPasswordHashingService passwordHasher)
     {
         _logger = logger;
         _passwordHasher = passwordHasher;

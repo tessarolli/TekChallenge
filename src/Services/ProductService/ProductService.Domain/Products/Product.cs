@@ -80,11 +80,8 @@ public sealed class Product : Entity<ProductId>
             throw new NullReferenceException(nameof(Discount));
         }
 
-        var discount = await Discount.Value;
-        if (discount is null)
-        {
-            throw new UnreachableExternalServiceException("Discount Service");
-        }
+        var discount = await Discount.Value
+            ?? throw new UnreachableExternalServiceException("Discount Service");
 
         return Price * (100 - discount.Amount) / 100;
     }

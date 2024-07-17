@@ -13,7 +13,7 @@ namespace TekChallenge.Tests.Services.ProductService;
 
 public class ProductsCommandAndQueriesTests
 {
-    private IProductRepository _productRepository;
+    private readonly IProductRepository _productRepository;
 
     public ProductsCommandAndQueriesTests()
     {
@@ -47,7 +47,7 @@ public class ProductsCommandAndQueriesTests
         // Arrange
         var addProductCommand = new AddProductCommand(1, "Product", "Description", 0);
         var error = new Error("Invalid Product Data");
-        var productDomainModel = Product.Create(null, "Product", "Description", 0, 0);
+        _ = Product.Create(null, "Product", "Description", 0, 0);
         _productRepository.AddAsync(Arg.Any<Product>()).Returns(Result.Fail(error));
         var handler = new AddProductCommandHandler(_productRepository);
 

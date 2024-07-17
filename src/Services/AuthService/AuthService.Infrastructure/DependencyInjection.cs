@@ -24,9 +24,8 @@ public static class DependencyInjection
     /// Add Authentication dependencies.
     /// </summary>
     /// <param name="services">Injected services.</param>
-    /// <param name="configuration">Injected _configuration.</param>
     /// <returns>Services with dependencies injected.</returns>
-    public static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAuthentication(this IServiceCollection services)
     {
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
 

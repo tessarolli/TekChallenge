@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 {
     builder
         .AddSharedDefinitionsInfrastructure("ProductService")
-        .AddProductServicePersistance(builder.Configuration)
+        .AddProductServicePersistance()
         .AddSharedDefinitionsApplication(typeof(TekChallenge.Services.ProductService.Application.AssemblyAnchor).Assembly)
         .AddPresentation();
 }

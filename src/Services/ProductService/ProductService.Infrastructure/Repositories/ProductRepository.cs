@@ -35,11 +35,10 @@ public class ProductRepository : IProductRepository
     /// Initializes a new instance of the <see cref="ProductRepository"/> class.
     /// </summary>
     /// <param name="dapperUtility">IDapperUtility to inject.</param>
-    /// <param name="connectionFactory">ISqlConnectionFactory to inject.</param>
     /// <param name="logger">ILogger to inject.</param>
     /// <param name="dapr">DaprClient to inject.</param>
     /// <param name="cache">ICacheService to inject.</param>
-    public ProductRepository(IDapperUtility dapperUtility, ISqlConnectionFactory<DbConnection> connectionFactory, ILogger<ProductRepository> logger, DaprClient dapr, ICacheService cache)
+    public ProductRepository(IDapperUtility dapperUtility, ILogger<ProductRepository> logger, DaprClient dapr, ICacheService cache)
     {
         _logger = logger;
         _db = dapperUtility;

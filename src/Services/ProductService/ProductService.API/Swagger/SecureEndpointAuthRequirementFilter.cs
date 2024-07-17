@@ -32,16 +32,16 @@ internal class SecureEndpointAuthRequirementFilter : IOperationFilter
 
         operation.Security = new List<OpenApiSecurityRequirement>
         {
-            new OpenApiSecurityRequirement
-            {
-                [new OpenApiSecurityScheme
-                {
-                    Reference = new OpenApiReference
+            new() {
+                [
+                    new OpenApiSecurityScheme
                     {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Token",
-                    },
-                }
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Token",
+                        },
+                    }
                 ] = new List<string>(),
             },
         };

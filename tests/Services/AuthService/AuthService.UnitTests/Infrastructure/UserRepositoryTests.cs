@@ -20,10 +20,9 @@ public class UserRepositoryTests
     public UserRepositoryTests()
     {
         _dapper = Substitute.For<IDapperUtility>();
-        var connectionFactory = Substitute.For<ISqlConnectionFactory<DbConnection>>();
         var logger = Substitute.For<ILogger<UserRepository>>();
         var passwordHasher = Substitute.For<IPasswordHashingService>();
-        _userRepository = new UserRepository(_dapper, connectionFactory, logger, passwordHasher);
+        _userRepository = new UserRepository(_dapper, logger, passwordHasher);
     }
 
     [Fact]
@@ -53,8 +52,8 @@ public class UserRepositoryTests
         // Arrange
         var expectedUsers = new List<UserDb>
         {
-            new UserDb(1, "John", "Doe", "john.doe@example.com", "hashedPassword", (int)Roles.Admin, DateTime.UtcNow),
-            new UserDb(2, "Jane", "Smith", "jane.smith@example.com", "hashedPassword", (int)Roles.User, DateTime.UtcNow)
+            new(1, "John", "Doe", "john.doe@example.com", "hashedPassword", (int)Roles.Admin, DateTime.UtcNow),
+            new(2, "Jane", "Smith", "jane.smith@example.com", "hashedPassword", (int)Roles.User, DateTime.UtcNow)
         };
         _dapper.QueryAsync<UserDb>(Arg.Any<string>(), Arg.Any<object>(), Arg.Any<CommandType>(), Arg.Any<DbTransaction?>()).Returns(expectedUsers);
 
@@ -74,8 +73,8 @@ public class UserRepositoryTests
         // Arrange
         var expectedUsers = new List<UserDb>
         {
-            new UserDb(1, "John", "Doe", "john.doe@example.com", "hashedPassword", (int)Roles.Admin, DateTime.UtcNow),
-            new UserDb(2, "Jane", "Smith", "jane.smith@example.com", "hashedPassword", (int)Roles.User, DateTime.UtcNow)
+            new(1, "John", "Doe", "john.doe@example.com", "hashedPassword", (int)Roles.Admin, DateTime.UtcNow),
+            new(2, "Jane", "Smith", "jane.smith@example.com", "hashedPassword", (int)Roles.User, DateTime.UtcNow)
         };
 
         _dapper.QueryAsync<UserDb>(Arg.Any<string>(), Arg.Any<object>(), Arg.Any<CommandType>(), Arg.Any<DbTransaction?>()).Returns(expectedUsers);

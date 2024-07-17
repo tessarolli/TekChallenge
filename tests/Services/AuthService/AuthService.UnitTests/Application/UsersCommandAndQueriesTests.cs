@@ -16,8 +16,8 @@ namespace TekChallenge.Tests.Services.AuthService.Application;
 
 public class UsersCommandAndQueriesTests
 {
-    private IUserRepository _userRepository;
-    private IPasswordHashingService _passwordHashingService;
+    private readonly IUserRepository _userRepository;
+    private readonly IPasswordHashingService _passwordHashingService;
 
     public UsersCommandAndQueriesTests()
     {
@@ -51,7 +51,7 @@ public class UsersCommandAndQueriesTests
         // Arrange
         var addUserCommand = new AddUserCommand("John", "Doe", "john.doe@example.com", "");
         var error = new Error("Invalid Password");
-        var userDomainModel = User.Create(null, "John", "Doe", "john.doe@example.com", "", passwordHasher: _passwordHashingService);
+        _ = User.Create(null, "John", "Doe", "john.doe@example.com", "", passwordHasher: _passwordHashingService);
         _userRepository.AddAsync(Arg.Any<User>()).Returns(Result.Fail(error));
         var handler = new AddUserCommandHandler(_userRepository, _passwordHashingService);
 

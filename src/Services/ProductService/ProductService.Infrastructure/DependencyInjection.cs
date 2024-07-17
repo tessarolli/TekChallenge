@@ -24,9 +24,8 @@ public static class DependencyInjection
     /// Add Persistence dependencies.
     /// </summary>
     /// <param name="services">Injected services.</param>
-    /// <param name="configuration">Injected _configuration.</param>
     /// <returns>Services with dependencies injected.</returns>
-    public static IServiceCollection AddProductServicePersistance(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddProductServicePersistance(this IServiceCollection services)
     {
         services.AddScoped<IProductRepository, ProductRepository>();
 

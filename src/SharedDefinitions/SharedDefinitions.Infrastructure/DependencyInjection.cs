@@ -47,8 +47,8 @@ public static class DependencyInjection
             .AddLoggingAndTracing(serviceName);
 
         builder.Services
-             .AddSharedDefinitionsPersistance(builder.Configuration)
-             .AddSharedDefinitionsAuthentication(builder.Configuration);
+             .AddSharedDefinitionsPersistance()
+             .AddSharedDefinitionsAuthentication();
 
         builder.Services.AddDaprClient();
 
@@ -89,9 +89,8 @@ public static class DependencyInjection
     /// Add Persistence dependencies.
     /// </summary>
     /// <param name="services">Injected services.</param>
-    /// <param name="configuration">Injected _configuration.</param>
     /// <returns>Services with dependencies injected.</returns>
-    private static IServiceCollection AddSharedDefinitionsPersistance(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection AddSharedDefinitionsPersistance(this IServiceCollection services)
     {
         services.AddScoped<IDapperUtility, DapperUtility>();
 
@@ -104,9 +103,8 @@ public static class DependencyInjection
     /// Add Authentication dependencies.
     /// </summary>
     /// <param name="services">Injected services.</param>
-    /// <param name="configuration">Injected _configuration.</param>
     /// <returns>Services with dependencies injected.</returns>
-    private static IServiceCollection AddSharedDefinitionsAuthentication(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection AddSharedDefinitionsAuthentication(this IServiceCollection services)
     {
         var jwtSettings = new JwtSettings
         {
