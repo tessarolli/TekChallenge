@@ -222,18 +222,22 @@ Ps: Swagger is disabled in the production environment.
 You can access your resources in Azure Public Cloud (for a short time) from these URLs:
 
 1. **API Gateway:**
-https://api-gateway-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
+  Service de-provisioned due to costs. You can clone and run locally with the same results.
 
 2. **Authentication Service:**
-   https://auth-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
+  Service de-provisioned due to costs. You can clone and run locally with the same results.
 
 3. **Discounts Service:**
-   https://discount-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
+   Service de-provisioned due to costs. You can clone and run locally with the same results.
 
 4. **Products Service:**
-   https://product-app.wonderfulwave-67ac4af3.eastus.azurecontainerapps.io/
+   Service de-provisioned due to costs. You can clone and run locally with the same results.
 
 If you have Visual Studio installed, you can use the provided .http files available under **Requests** folder pre-configure for interacting with the production API gateway.
+- Start with one of the login requests, I would recommend the AdminLogin.http first.
+- Next, copy the token from the response, you will need it in the following requests.
+- Choose another request you want to test out from the available list, and replace the existing @token=ey... with the new token you just generated on the LoginRequest, and you are all set.
+- Just be sure to use the same token for every request you try out.
 
 ### Production Environment Monitoring Strategy
 
